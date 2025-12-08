@@ -43,13 +43,13 @@ INSTITUTION_A_CONFIG = {
     # Data Warehouse Mapping
     "DWH_SCHEMA": "institution_a_dw",
     "TABLE_MAPPING": {
-        "financial_products": "int_financial_products",
-        "account_holders": "int_account_holders",
-        "transactions_data": "int_transactions",
-        "transaction_channels": "int_transaction_channels",
-        "account_balances": "int_account_balances",
-        "transaction_details": "int_transaction_details",
-        "account_categories": "int_account_categories"
+        "financial_products": "std_financial_products",
+        "account_holders": "std_account_holders",
+        "transactions_data": "std_transactions",
+        "transaction_channels": "std_transaction_channels",
+        "account_balances": "std_account_balances",
+        "transaction_details": "std_transaction_details",
+        "account_categories": "std_account_categories"
     },
     
     # Performance Settings
