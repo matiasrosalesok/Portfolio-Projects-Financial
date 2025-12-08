@@ -1,0 +1,5 @@
+﻿# Generated .gitignore for subproject
+__pycache__/
+.env
+*.pyc
+.vscode/
