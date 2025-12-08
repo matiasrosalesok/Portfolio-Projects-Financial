@@ -42,11 +42,6 @@ def retry_s3_operation(func):
     """
     Decorador para reintentos en operaciones S3.
     Reintenta hasta 5 veces con backoff exponencial (2-30s).
-    
-    Ejemplo:
-        @retry_s3_operation
-        def descargar_archivo(s3_client, bucket, key):
-            ...
     """
     @retry(**S3_RETRY_CONFIG)
     def wrapper(*args, **kwargs):
@@ -65,10 +60,6 @@ def retry_pipeline_operation(func):
     """
     Decorador para reintentos en llamadas a Pipeline API.
     Reintenta hasta 4 veces con backoff exponencial (3-30s).
-    
-    Ejemplo:
-        @retry_pipeline_operation
-        def ejecutar_pipeline(integration_id):
             ...
     """
     @retry(**PIPELINE_RETRY_CONFIG)

@@ -19,9 +19,9 @@ def _download_file_with_retry(s3_client, bucket, key, local_path):
 async def descargar_archivos_de_s3(
     prefix: str, entorno: str, reg: dict, entidad: str, extension: str, config: dict
 ):
-    """Busca y descarga archivos de S3, usando las credenciales y rutas de la universidad.
-
-    Esta versión usa paginación, retry logic, y no imprime credenciales en stdout.
+    """
+    Busca y descarga archivos de S3, usando las credenciales y rutas bancarias.
+    Usa paginación, retry logic, y no imprime credenciales en stdout.
     """
 
     # Determinar credenciales y bucket
@@ -34,7 +34,6 @@ async def descargar_archivos_de_s3(
     # Registrar información no sensible
     logger.debug("S3 download: bucket=%s prefix=%s entidad=%s entorno=%s", bucket, prefix, entidad, entorno)
 
-    # Inicializar cliente S3
     s3 = boto3.client(
         "s3", aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=REGION
     )

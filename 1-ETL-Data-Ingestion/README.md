@@ -14,8 +14,6 @@ Quick start
 2. Ejecutar demo de imports:
    `python run_demo.py`
 
-Detalles
-- Ver `README.SKILLS.md` para ejemplos de demo, comandos y puntos para entrevistas.
 # 📊 ETL Data Ingestion Pipeline
 
 **Automated data extraction from multiple sources to centralized data lake**

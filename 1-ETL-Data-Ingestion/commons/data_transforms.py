@@ -14,19 +14,17 @@ def safe_read_parquet(path: str) -> pd.DataFrame:
         df = pd.read_parquet(path, engine='pyarrow')
         return df
     except Exception as e:
-        print(f"   ❌ Error leyendo parquet {path}: {e}")
+        print(f"Error leyendo parquet {path}: {e}")
         return pd.DataFrame()
 
 def normalize_dtypes_for_postgres(df: pd.DataFrame) -> pd.DataFrame:
-    """Ajusta los tipos de datos comunes a un formato más seguro para PostgreSQL (ej: floats a Int64 si son enteros)."""
     df = df.copy()
     for c in df.columns:
-        # Convertir floats que son realmente enteros a Int64 (para permitir nulos)
+        # Convertir floats a enteros
         if pd.api.types.is_float_dtype(df[c]):
             s = df[c].dropna()
             if len(s) == 0 or ((s % 1).abs() < 1e-9).all():
                 df[c] = pd.to_numeric(df[c], errors='coerce').round().astype('Int64')
-        # Asegurar que los objetos se traten como strings (texto)
         if pd.api.types.is_object_dtype(df[c]):
             df[c] = df[c].astype("string")
     return df
@@ -34,28 +32,25 @@ def normalize_dtypes_for_postgres(df: pd.DataFrame) -> pd.DataFrame:
 def copy_to_postgres(df: pd.DataFrame, engine: Engine, schema: str, table: str, replace: bool = True):
     """
     Carga un DataFrame a PostgreSQL usando la sentencia COPY para optimizar la velocidad.
-    Si 'replace' es True, trunca/crea la tabla antes de la inserción.
     """
     if df.empty:
-        print(f"   ⚠️ DataFrame vacío para {schema}.{table}. Saltando COPY.")
+        print(f"DataFrame vacío para {schema}.{table}. Saltando COPY.")
         return
 
-    # 1. Crear/Reemplazar la estructura de la tabla
+    #Crear/Reemplazar la estructura de la tabla
     if replace:
         # Usamos to_sql con if_exists='replace' para manejar la creación de la tabla
         df.head(0).to_sql(table, engine, schema=schema, if_exists="replace", index=False)
         
-    # 2. Uso de COPY para inserción masiva
+    #Uso de COPY para inserción masiva
     buffer = io.StringIO()
-    # Usamos '\t' como delimitador para evitar conflictos con datos de texto (el default es ',')
     df.to_csv(buffer, sep='\t', index=False, header=False, na_rep='NULL_VAL') 
     buffer.seek(0)
 
-    # Obtenemos la conexión raw para usar copy_expert
+    # Obtenemos la conexión raw
     raw = engine.raw_connection()
     try:
         with raw.cursor() as cur:
-            # Comando COPY TO STDIN
             cur.copy_expert(
                 f"""
                 COPY "{schema}"."{table}" FROM STDIN WITH (
@@ -70,6 +65,7 @@ def copy_to_postgres(df: pd.DataFrame, engine: Engine, schema: str, table: str, 
         raise e
     finally:
         raw.close()
+        
 def convert_csv_to_parquet(csv_path: str, parquet_path: str) -> bool:
     """
     Lee un archivo CSV y lo guarda como un archivo Parquet.
@@ -82,7 +78,7 @@ def convert_csv_to_parquet(csv_path: str, parquet_path: str) -> bool:
         df.to_parquet(parquet_path, engine='pyarrow', index=False)
         return True
     except Exception as e:
-        print(f"❌ Falló la conversión de CSV a Parquet para {csv_path}: {e}")
+        print(f"Falló la conversión de CSV a Parquet para {csv_path}: {e}")
         return False
     
 

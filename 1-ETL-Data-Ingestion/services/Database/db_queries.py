@@ -5,7 +5,7 @@ from services.Database.db_connector import get_db_connection
 logger = logging.getLogger(__name__)
 
 def leer_table_master(config: dict) -> list:
-    """Lee registros de la tabla master de la universidad actual."""
+    """Lee registros de la tabla master del entidad financiera actual."""
     table_name = config["TABLE_MASTER"]
     query = f"""
         SELECT coordenada_key, ambiente, periodo, escenario, proceso, demanda, entorno

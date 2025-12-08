@@ -1,67 +1,67 @@
-# Datalake/datos_en_bruto.py (copied for portfolio ETL demo)
+
 import os
 import uuid
 import traceback
 import logging
 from commons.data_transforms import convert_csv_to_parquet
 # Importar configuración y servicios
-from config.ue import UE_CONFIG
+from config.Bank_1 import BANK_1_CONFIG
 
 logger = logging.getLogger(__name__)
-from config.uax import UAX_CONFIG
-from config.uag import UAG_CONFIG
+from config.Bank_2 import BANK_2_CONFIG
+from config.Bank_3 import BANK_3_CONFIG
 from services.Database import db_queries
 from services.Amazon import s3_storage
 from services.Pipelines import pipeline_manager
 from services.Database import db_connector 
-# Importar la función del DWH Loader
-# Diccionario de CONFIGURACIONES de universidades disponibles
-UNIVERSIDADES = {
-    UE_CONFIG["CODE"]: UE_CONFIG,
-    UAX_CONFIG["CODE"]: UAX_CONFIG,
-    UAG_CONFIG["CODE"]: UAG_CONFIG,
+
+# Diccionario de CONFIGURACIONES de disponibles
+ENTIDAD_FINANCIERA = {
+    BANK_1_CONFIG["CODE"]: BANK_1_CONFIG,
+    BANK_2_CONFIG["CODE"]: BANK_2_CONFIG,
+    BANK_3_CONFIG["CODE"]: BANK_3_CONFIG,
 }
-async def procesar_datalake_universidad(uni_code: str):
-    """Ejecuta el datalake de cada universidad"""
-    config = UNIVERSIDADES.get(uni_code.lower())
+async def procesar_datalake_bancario(bank_code: str):
+    """Ejecuta el datalake de cada banco"""
+    config = ENTIDAD_FINANCIERA.get(bank_code.lower())
     if not config:
-        logger.error("Configuracion no encontrada para universidad: %s", uni_code)
+        logger.error("Configuracion no encontrada para banco: %s", bank_code)
         return
-    logger.info("Iniciando datalake proceso por universidad: %s", uni_code.upper())
+    logger.info("Iniciando datalake proceso por banco: %s", bank_code.upper())
     try:
-        # 1. Leer registros
+        #Leer registros
         registros = db_queries.leer_table_master(config)
         extension_a_descargar = config["EXTENSION_A_DESCARGAR"]
         tenant = config["TENANT_SUBDOMAIN"]
-        #aqui igual nomas es quitarle el _mx
-        if tenant.endswith("-mx"):
-            tenant= "uag"
+        #aqui igual nomas es quitarle el _3
+        if tenant.endswith("_3"):
+            tenant= "Bank_3"
         for reg in registros:
             entorno = reg["entorno"].lower()
             
-            # 2. Ejecutar Pipeline
+            #Ejecutar Pipeline
             integration_run_id = str(uuid.uuid4())
             resultadouuid = await pipeline_manager.ejecutar_pipeline(
                 reg["escenario"], entorno, integration_run_id, reg["proceso"], config
             )
             if not resultadouuid: continue
-            # 3. Procesar entidades y descargar archivos
+            #Procesar entidades y descargar archivos.
             for entidad in config["ENTIDADES"]:
-                # La construcción del prefix S3 (ajuste específico para UE/UAX)
-                prefix_s3 = f"{tenant}/publisher/{'pbi/' if tenant == 'ueuropea' else ''}{entidad}/integration_run_id={resultadouuid}"
+                # La construcción del prefix S3
+                prefix_s3 = f"{tenant}/publisher/{'pbi/' if tenant == 'bank_1' else ''}{entidad}/integration_run_id={resultadouuid}"
                 
                 archivos_descargados = await s3_storage.descargar_archivos_de_s3(
                     prefix_s3, entorno, reg, entidad, extension_a_descargar, config
                 )
 
-                # 4. Inserción en Datalake
+                #Inserción en Datalake
                 if archivos_descargados:
                     conn_ins = db_connector.get_db_connection()
                     try:
                         for ruta_archivo_descargado in archivos_descargados:
                             ruta_a_insertar = ruta_archivo_descargado
                             
-                            # Conversión de CSV a Parquet si es necesario (como UAX)
+                            # Conversión de CSV a Parquet si es necesario 
                             if extension_a_descargar == ".csv":
                                 base, _ = os.path.splitext(ruta_archivo_descargado)
                                 ruta_parquet = f"{base}.parquet"
@@ -81,7 +81,7 @@ async def procesar_datalake_universidad(uni_code: str):
                         logger.error("Falló el procesamiento o inserción: %s", e, exc_info=True)
                     finally:
                         conn_ins.close()
-        logger.info("Datalake proceso completado para: %s", uni_code.upper())
+        logger.info("Datalake proceso completado para: %s", bank_code.upper())
         return True # Retorna True si el procesamiento del datalake fue exitoso
     except Exception as e:
         logger.error("Un error crítico ocurrió: %s", e, exc_info=True)

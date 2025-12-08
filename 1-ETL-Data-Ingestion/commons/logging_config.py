@@ -30,8 +30,7 @@ def setup_logging(level=logging.INFO, log_to_file=True):
     root_logger = logging.getLogger()
     root_logger.setLevel(level)
     
-    # Limpiar handlers existentes para evitar duplicados
-    # (en caso de que se llame múltiples veces)
+    # Limpiar handlers
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
     

@@ -4,7 +4,7 @@
 import os
 
 INSTITUTION_A_CONFIG = {
-    "CODE": "institution_a",
+    "CODE": "Bank_1",
     "INSTITUTION_NAME": "Institución Financiera A",
     "DESCRIPTION": "Sistema de datos para procesamiento de transacciones financieras",
     

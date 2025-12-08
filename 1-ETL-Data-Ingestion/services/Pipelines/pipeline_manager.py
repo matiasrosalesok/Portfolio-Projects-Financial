@@ -14,8 +14,7 @@ def construir_args(escenario, entorno, proceso, config: dict):
     
     base = {
         "client": client,
-        #aqui para el pipe general nomas es quitarle el -mx
-        "organization": f"{client}-es" if client == "uax" else f"{client}" if client == "uag" else client,
+        "organization": f"{client}" if client == "Bank_2" else f"{client}" if client == "Bank_3" else client,
         "tenant": tenant,
         "env": f"{entorno}",
         "origin_ids": f"{proceso}",
@@ -57,9 +56,7 @@ def _consultar_pipeline_status(token, api_base, pipeline_code, fechaAfter, fecha
 
 
 async def ejecutar_pipeline(escenario, entorno, integration_run_id, proceso, config: dict, poll_seconds=30):
-    """Ejecuta el pipeline de Foris y espera a que termine (polling con reintentos)."""
-    
-    # Cargar variables de la configuración
+    """Ejecuta el pipeline de AWS y espera a que termine (polling con reintentos)."""
     token = config["TOKEN"]
     pipeline_code = config["PIPELINE_CODE"]
     api_base = config["API_URL_BASE"]
@@ -68,11 +65,10 @@ async def ejecutar_pipeline(escenario, entorno, integration_run_id, proceso, con
     args_str = construir_args(escenario, entorno, proceso, config)
     
     try:
-        # Petición de Ejecución (con reintentos)
         logger.debug("Ejecución pipeline: pipeline_code=%s tenant=%s", pipeline_code, tenant_subdomain)
         _ejecutar_pipeline_request(token, api_base, pipeline_code, tenant_subdomain, integration_run_id, args_str)
 
-        # Bucle de Monitoreo (Polling)
+        # Polling para verificar el estado del pipeline
         fechaAfter = (datetime.today() - timedelta(days=2)).strftime("%Y-%m-%d")
         fechaBefore = (datetime.today() + timedelta(days=2)).strftime("%Y-%m-%d")
         
