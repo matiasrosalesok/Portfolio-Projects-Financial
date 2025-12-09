@@ -3,8 +3,9 @@
 **Complete end-to-end data solutions for financial institutions**
 
 Matías Rosales • Data Engineer | BI Specialist | Administrator  
-[LinkedIn: https://www.linkedin.com/in/matias-rosales-chiapparelli-71b940124/ ](#) | [Email: matiasrosales96@gmail.com](#) | [GitHub](https://github.com/matiasrosalesok)
-
+[LinkedIn](https://www.linkedin.com/in/matias-rosales-chiapparelli-71b940124/) •  
+[Email](mailto:matiasrosales96@gmail.com) •  
+[GitHub](https://github.com/matiasrosalesok)
 ---
 
 ## 📋 Overview
@@ -401,5 +402,6 @@ I'm excited to bring these skills to your next project.
 | Configuration | [3-Multitenant-Config](./3-Multitenant-Config/) | ✅ Production |
 | Analytics | [4-Analytics-Evolutivos](./4-Analytics-Evolutivos/) | ✅ Production |
 | PowerBI | [5-PowerBI-Dashboards](./5-PowerBI-Dashboards/) | ✅ Production |
+
 
 
