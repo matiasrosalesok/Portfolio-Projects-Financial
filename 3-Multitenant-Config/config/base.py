@@ -21,7 +21,7 @@ PG_CONFIG_BASE = {
 }
 
 AWS_BUCKETS = {
-    "prod": "foris-data-transfer-hub",
-    "sandbox": "foris-data-transfer-hub-sandbox"
+    "prod": "banking-data-transfer-hub",
+    "sandbox": "banking-data-transfer-hub-sandbox"
 }
 REGION = os.getenv("AWS_REGION", "us-east-1")

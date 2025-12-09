@@ -9,7 +9,6 @@ from config.Bank_1 import BANK_1_CONFIG
 
 logger = logging.getLogger(__name__)
 from config.Bank_2 import BANK_2_CONFIG
-from config.Bank_3 import BANK_3_CONFIG
 from services.Database import db_queries
 from services.Amazon import s3_storage
 from services.Pipelines import pipeline_manager
@@ -19,7 +18,6 @@ from services.Database import db_connector
 ENTIDAD_FINANCIERA = {
     BANK_1_CONFIG["CODE"]: BANK_1_CONFIG,
     BANK_2_CONFIG["CODE"]: BANK_2_CONFIG,
-    BANK_3_CONFIG["CODE"]: BANK_3_CONFIG,
 }
 async def procesar_datalake_bancario(bank_code: str):
     """Ejecuta el datalake de cada banco"""
@@ -34,8 +32,8 @@ async def procesar_datalake_bancario(bank_code: str):
         extension_a_descargar = config["EXTENSION_A_DESCARGAR"]
         tenant = config["TENANT_SUBDOMAIN"]
         #aqui igual nomas es quitarle el _3
-        if tenant.endswith("_3"):
-            tenant= "Bank_3"
+        if tenant.endswith("_2"):
+            tenant= "Bank_2"
         for reg in registros:
             entorno = reg["entorno"].lower()
             

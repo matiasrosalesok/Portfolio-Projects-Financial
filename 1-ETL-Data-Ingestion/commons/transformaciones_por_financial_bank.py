@@ -1,6 +1,6 @@
 import pandas as pd
 
-def transformar_por_universidad(df: pd.DataFrame, financial_bank: str) -> pd.DataFrame:
+def transformar_por_entidad_financiera(df: pd.DataFrame, financial_bank: str) -> pd.DataFrame:
     """
     Aplica transformaciones específicas según el entidad financiera.
     Args:
@@ -14,9 +14,6 @@ def transformar_por_universidad(df: pd.DataFrame, financial_bank: str) -> pd.Dat
          df["tags"] = "tags1,tags2"
     elif financial_bank.upper() == "Bank_2":
         # Para Bank_2 no se agrega la columna 'tags'
-        pass
-    elif financial_bank.upper() == "Bank_3":
-        # Bank_1 agregar otras transformaciones específicas para Bank_3 aquí
         pass
     # Agrega más instuticiones financieras y reglas si lo necesitas
     return df
