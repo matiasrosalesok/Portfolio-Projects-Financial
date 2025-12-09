@@ -187,7 +187,7 @@ assert validation['passed'] == True
 copy_to_warehouse(
     dataframe=normalized,
     schema="institution_a_dw",
-    table="int_transactions"
+    table="std_transactions"
 )
 ```
 
@@ -275,9 +275,9 @@ Validating quality... ✓ (2.8s)
   - Issues found: 3 (corrected)
 
 Loading to warehouse... ✓ (8.9s)
-  - int_transactions: 1,234,567 rows
-  - int_accounts: 567,890 rows
-  - int_products: 45,123 rows
+  - std_transactions: 1,234,567 rows
+  - std_accounts: 567,890 rows
+  - std_products: 45,123 rows
 
 Total Time: 20.0 seconds
 Status: SUCCESS ✓
@@ -315,8 +315,8 @@ SELECT
   DATE(t.transaction_date) as transaction_day,
   COUNT(*) as transaction_count,
   SUM(t.amount) as daily_total
-FROM int_transactions t
-JOIN int_products p ON t.product_id = p.product_id
+FROM std_transactions t
+JOIN std_products p ON t.product_id = p.product_id
 GROUP BY p.product_name, DATE(t.transaction_date)
 ORDER BY transaction_day DESC, daily_total DESC;
 
@@ -334,7 +334,7 @@ Edit mappings for your institution:
 {
   "institution_a_mapping.json": {
     "source_table": "raw_transactions",
-    "target_table": "int_transactions",
+    "target_table": "std_transactions",
     "column_mappings": {
       "trans_id": "transaction_id",
       "acct_no": "account_id",
