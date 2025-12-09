@@ -358,8 +358,8 @@ Each project is designed to be:
 - 🤝 Collaborations
 
 ### Reach Out
-- **Email:** matias@email.com
-- **LinkedIn:** [linkedin.com/in/matiasrosales](#)
+- **Email:** matiasrosales96@gmail.com
+- **LinkedIn:** [linkedin.com/in/matias-rosales-chiapparelli-71b940124/](#)
 - **GitHub:** [github.com/matiasrosalesok](#)
 - **Portfolio:** [matiasrosales.dev](#)
 
@@ -400,6 +400,7 @@ I'm excited to bring these skills to your next project.
 | Configuration | [3-Multitenant-Config](./3-Multitenant-Config/) | ✅ Production |
 | Analytics | [4-Analytics-Evolutivos](./4-Analytics-Evolutivos/) | ✅ Production |
 | PowerBI | [5-PowerBI-Dashboards](./5-PowerBI-Dashboards/) | ✅ Production |
+
 
 
 
