@@ -110,7 +110,7 @@ def load_transactions(
                transaction_channel,
                amount,
                account_id
-        FROM "{schema}".int_transactions
+        FROM "{schema}".std_transactions
         {where_sql}
     """)
 

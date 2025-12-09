@@ -53,7 +53,7 @@ def load_transactions(
     sql = text(f"""
         SELECT transaction_date, product_category, transaction_channel,
                amount, account_id
-        FROM "{schema}".int_transactions
+        FROM "{schema}".std_transactions
         {where_sql}
     """)
 

@@ -78,26 +78,21 @@ PostgreSQL Data Warehouse
 
 ```
 2-DataWarehouse-Transform/
-├── src/
-│   ├── dwh_core.py              # Core transformation logic
-│   ├── schema_manager.py        # Schema creation & management
-│   ├── data_normalizer.py       # Type normalization
-│   ├── dimension_mapper.py      # Dimensional mappings
-│   └── quality_validator.py     # Data quality checks
-├── sql/
-│   ├── create_schemas.sql
-│   ├── create_dimensions.sql
-│   ├── create_facts.sql
-│   └── create_indexes.sql
-├── mappings/
-│   ├── institution_a_mapping.json
-│   ├── institution_b_mapping.json
-│   └── institution_c_mapping.json
-├── tests/
-│   ├── test_normalization.py
-│   └── test_validation.py
-├── requirements.txt
-└── README.md
+├── services/
+│   └── Database/
+│       ├── db_connector.py     # PostgreSQL and SQLAlchemy connector
+│       └── db_queries.py       # Metadata & coordinator table queries
+│
+├── Warehouse/
+│   ├── dwh_core.py             # Core transformation + bulk loading logic
+│   ├── dwh_loader_ue.py        # Bank Alpha loader (config.ue)
+│   ├── dwh_loader_uag.py       # Bank Beta loader (config.uag)
+│   └── dwh_loader_uax.py       # Bank Gamma loader (config.uax)
+│
+├── run_demo.py                 # Example demo execution
+├── README.SKILLS.md            # Talking points for interviews
+├── README.md                   # (this file)
+└── requirements.txt
 ```
 
 ---

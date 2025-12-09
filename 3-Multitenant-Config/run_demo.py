@@ -2,8 +2,8 @@
 import sys
 print('Multitenant demo starting')
 try:
-    import config.base as base
-    import config.ue as ue
+    import config.Base as base
+    import config.Bank_1 as bank_1
     print('Imports OK: config.base, config.ue')
     print('Python:', sys.version.splitlines()[0])
 except Exception as e:
