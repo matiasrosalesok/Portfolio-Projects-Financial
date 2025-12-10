@@ -15,7 +15,7 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 
 from config.base import PG_CONFIG_BASE
-from config.ue import INSTITUTION_A_CONFIG
+from config.bank_1 import INSTITUTION_A_CONFIG
 
 
 # ======================================================

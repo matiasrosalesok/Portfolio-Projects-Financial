@@ -4,13 +4,13 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from config.base import PG_CONFIG_BASE
 from commons.data_transforms import safe_read_parquet, normalize_dtypes_for_postgres, copy_to_postgres, cargar_mapa_coordenadas
-from commons.transformaciones_por_universidad import transformar_por_universidad
+from commons.transformaciones_por_financial_bank import transformar_por_entidad_financiera
 
 logger = logging.getLogger(__name__)
 
 def run_dwh_loader(config: dict):
     """
-    Ejecuta la carga de datos del Datalake al DWH para una universidad específica,
+    Ejecuta la carga de datos del Datalake al DWH para una entidad financiera específica,
     basándose en su diccionario de configuración.
     """
     
@@ -21,7 +21,7 @@ def run_dwh_loader(config: dict):
     TABLE_MASTER = config["TABLE_MASTER"]
     REEMPLAZAR_TABLAS = True
 
-    # 1. Conexión a la Base de Datos
+    #Conexión a la Base de Datos
     engine = create_engine(
         f"postgresql+psycopg2://{PG_CONFIG_BASE['user']}:{PG_CONFIG_BASE['password']}@"
         f"{PG_CONFIG_BASE['host']}:{PG_CONFIG_BASE['port']}/{PG_CONFIG_BASE['dbname']}"
@@ -29,11 +29,10 @@ def run_dwh_loader(config: dict):
     conn_pg = engine.raw_connection()
     cursor = conn_pg.cursor()
 
-    # Asegura que el esquema exista
+    # el esquema existe?
     with engine.connect() as eg:
         eg.execute(text(f'CREATE SCHEMA IF NOT EXISTS "{TARGET_SCHEMA}";'))
 
-    # 2. Query para obtener la última versión del día (usando la tabla DATALAKE_TABLE específica)
     SQL_LATEST = f'''
         WITH ranked AS (
             SELECT
@@ -80,7 +79,7 @@ def run_dwh_loader(config: dict):
                     continue
                 df["fecha_creacion"] = fecha_creacion 
                 df["fecha_creacion"] = pd.to_datetime(df["fecha_creacion"], errors="coerce").dt.strftime("%d/%m/%Y")
-                df = transformar_por_universidad(df, config["CODE"])
+                df = transformar_por_entidad_financiera(df, config["CODE"])
                 scenario_s = str(scenario).strip()
                 proceso_s  = str(proceso).strip()
                 demanda_s  = str(demanda).strip()

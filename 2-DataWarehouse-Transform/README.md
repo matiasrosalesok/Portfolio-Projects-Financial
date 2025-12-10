@@ -85,9 +85,8 @@ PostgreSQL Data Warehouse
 │
 ├── Warehouse/
 │   ├── dwh_core.py             # Core transformation + bulk loading logic
-│   ├── dwh_loader_ue.py        # Bank Alpha loader (config.ue)
-│   ├── dwh_loader_uag.py       # Bank Beta loader (config.uag)
-│   └── dwh_loader_uax.py       # Bank Gamma loader (config.uax)
+│   ├── dwh_loader_bank_1.py    # Bank Alpha loader
+│   ├── dwh_loader_bank_2.py    # Bank Beta loader
 │
 ├── run_demo.py                 # Example demo execution
 ├── README.SKILLS.md            # Talking points for interviews

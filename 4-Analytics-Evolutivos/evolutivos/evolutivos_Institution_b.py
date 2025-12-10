@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from sqlalchemy import create_engine, text
 from config.base import PG_CONFIG_BASE
-from config.bank_2 import INSTITUTION_A_CONFIG
+from config.bank_2 import INSTITUTION_B_CONFIG
 
 
 # ======================================================
@@ -37,7 +37,7 @@ def load_transactions(
     end_date: Optional[date] = None,
 ) -> pd.DataFrame:
 
-    schema = _get_schema(INSTITUTION_A_CONFIG, "bank_beta_analytics")
+    schema = _get_schema(INSTITUTION_B_CONFIG, "bank_beta_analytics")
     where_clauses = []
     params: Dict[str, object] = {}
 
@@ -201,7 +201,7 @@ def run_full_evolution(
     end_date: Optional[date] = None,
 ):
     engine = get_engine()
-    schema = _get_schema(INSTITUTION_A_CONFIG, "bank_beta_analytics")
+    schema = _get_schema(INSTITUTION_B_CONFIG, "bank_beta_analytics")
 
     df = load_transactions(engine, start_date, end_date)
 
