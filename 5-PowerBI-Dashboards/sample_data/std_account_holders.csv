@@ -1,0 +1,6 @@
+account_holder_id,customer_code,segment,risk_rating
+1,CUST-0001,Mass,Low
+2,CUST-0002,Mass,Medium
+3,CUST-0003,Affluent,Low
+4,CUST-0004,Mass,High
+5,CUST-0005,Private,Low

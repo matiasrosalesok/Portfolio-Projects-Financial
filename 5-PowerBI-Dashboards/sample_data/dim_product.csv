@@ -1,0 +1,6 @@
+product_id,product_code,product_name,product_category
+1,CHK,Checking Account,Retail
+2,SAV,Savings Account,Retail
+3,CRD,Credit Card,Cards
+4,MTG,Mortgage,Lending
+5,INV,Investment Account,Wealth

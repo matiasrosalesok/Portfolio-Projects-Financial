@@ -1,0 +1,6 @@
+transaction_sk,date_key,institution_id,product_id,channel_id,account_holder_id,transaction_date,amount
+1,53,3,5,3,25,2024-02-22,3842.15
+2,10,1,1,1,10,2024-01-10,123.77
+3,80,2,3,2,55,2024-03-21,512.66
+4,5,3,2,3,33,2024-01-05,44.28
+5,33,1,4,1,70,2024-02-02,2722.41
