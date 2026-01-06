@@ -1,6 +1,6 @@
-transaction_date,product_category,institution_code,daily_volume,transaction_count,avg_transaction,min_transaction,max_transaction,unique_accounts
-2024-01-01,Retail,ALPHA,321.55,5,64.31,12.44,144.10,4
-2024-01-01,Cards,BETA,1820.11,9,202.23,50.99,612.88,7
-2024-01-01,Lending,GAMMA,6550.90,3,2183.63,1500.12,3000.55,3
-2024-01-02,Retail,ALPHA,512.44,6,85.41,20.10,190.33,5
-2024-01-02,Wealth,BETA,9980.12,2,4990.06,4500.44,5480.66,2
+date_key,product_category,institution_code,daily_volume,transaction_count,avg_transaction,min_transaction,max_transaction,unique_accounts
+20250101,Retail,ALPHA,321.55,5,64.31,12.44,144.1,4
+20250101,Cards,BETA,1820.11,9,202.23,50.99,612.88,7
+20250101,Lending,GAMMA,6550.9,3,2183.63,1500.12,3000.55,3
+20250102,Retail,ALPHA,512.44,6,85.41,20.1,190.33,5
+20250102,Wealth,BETA,9980.12,2,4990.06,4500.44,5480.66,2

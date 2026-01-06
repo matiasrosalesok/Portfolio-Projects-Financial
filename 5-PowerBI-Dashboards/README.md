@@ -481,6 +481,7 @@ Decision Speed: 10x faster
 ```
 5-PowerBI-Dashboards/
 ├── dashboards/
+│   ├── Financial_Performance_Analytics_Dashboard.pbix
 │   ├── Executive_Summary.pbix
 │   ├── Transaction_Analysis.pbix
 │   ├── Product_Performance.pbix
