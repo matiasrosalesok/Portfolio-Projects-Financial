@@ -1,18 +1,3 @@
-3 - Multitenant Configuration
-
-Resumen
-- Plantillas y helpers para gestionar configuración por tenant y aislar secretos.
-
-Habilidades clave
-- Diseño de multi-tenant, validación de configs y separación de secretos.
-
-Quick start
-1. Copia `.env.example` a `.env` y llena valores locales.
-2. Instalar deps: `pip install -r requirements.txt`
-3. Validar configs (ejemplo): `python scripts/validate_configs.py --path config/`
-
-Detalles
-- Ver `config/` para ejemplos de `ue.py`, `uax.py`, `uag.py` adaptados a variables de entorno.
 # ⚙️ Multi-Tenant Configuration System
 
 **Scalable configuration management for multiple financial institutions**
