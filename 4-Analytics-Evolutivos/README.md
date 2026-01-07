@@ -1,15 +1,3 @@
-4 - Analytics: Evolutivos
-
-Resumen
-- Pipelines analíticos y métricas evolutivas para seguimiento temporal.
-
-Habilidades clave
-- Diseño de métricas temporales, agregaciones y notebooks reproducibles.
-
-Quick start
-1. Instalar deps: `pip install -r requirements.txt`
-2. Abrir notebook demo: `jupyter notebook` y cargar `notebooks/evolutivos_demo.ipynb` (si está presente)
-3. Ejecutar `run_demo.py` para validar imports
 # 📊 Analytics & Evolutivos - Advanced Data Analysis Layer
 
 **Automated calculation of analytical metrics and evolution tracking**
