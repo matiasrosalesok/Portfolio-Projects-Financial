@@ -1,19 +1,3 @@
-1 - ETL Data Ingestion
-
-Resumen
-- Ingesta confiable y reproducible de datos desde APIs, archivos y S3 hacia un datalake (Parquet).
-
-Habilidades clave
-- Diseño de pipelines ETL idempotentes y tolerantes a fallos.
-- Trabajo con Parquet, pandas y pyarrow.
-- Integración con AWS S3 y manejo de retries.
-
-Quick start
-1. Crear virtualenv e instalar deps:
-   `python -m venv .venv ; .\.venv\Scripts\Activate ; pip install -r requirements.txt`
-2. Ejecutar demo de imports:
-   `python run_demo.py`
-
 # 📊 ETL Data Ingestion Pipeline
 
 **Automated data extraction from multiple sources to centralized data lake**
