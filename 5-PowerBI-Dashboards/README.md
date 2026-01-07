@@ -1,14 +1,3 @@
-5 - PowerBI Dashboards
-
-Resumen
-- Preparación de datasets y ejemplos de dashboards orientados a usuarios de negocio.
-
-Quick start
-1. Instalar deps: `pip install -r requirements.txt`
-2. Ejecutar export demo: `python scripts/export_powerbi_dataset.py --in sample.parquet --out sample.csv`
-
-Nota
-- Si vas a publicar `.pbix` o capturas, elimina datos sensibles antes.
 # 📊 PowerBI Dashboards - Interactive Business Intelligence
 
 **Executive dashboards and analytical reports for financial institutions**
