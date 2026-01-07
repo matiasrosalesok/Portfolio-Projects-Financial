@@ -1,19 +1,3 @@
-2 - DataWarehouse & Transform
-
-Resumen
-- Modelado y carga de datos transformados desde el datalake al esquema del DWH, optimizado para consultas analíticas.
-
-Habilidades clave
-- Modelado DWH, cargas masivas (COPY), y validación de integridad.
-
-Quick start
-1. Crear virtualenv e instalar deps:
-   `python -m venv .venv ; .\.venv\Scripts\Activate ; pip install -r requirements.txt`
-2. Ejecutar demo de imports:
-   `python run_demo.py`
-
-Detalles
-- Ver `README.SKILLS.md` para demos sugeridos y comandos SQL.
 # 🏢 Data Warehouse - Transformation & Load Layer
 
 **Transform raw financial data into analytical-ready warehouse**
