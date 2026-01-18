@@ -170,20 +170,18 @@ All Coordinated by:
 
 ---
 
-## 📊 By The Numbers
+## 📊 Project Scope & Characteristics
 
 ```
-Total Lines of Code:    2,500+
-Projects:               5
-Production-Ready:       100%
-Test Coverage:          85%+
-Data Processing:        2.5M records/day
-Daily Aggregations:     50+ KPIs
-Dashboards:             5
-Visualizations:         50+
-Uptime:                 99.9%
-Response Time:          <100ms (queries)
-User Base:              150+ (dashboards)
+
+- End-to-end data engineering project focused on ETL design and analytics
+- Modular and scalable Python codebase
+- Clear separation of ingestion, transformation and analytics layers
+- SQL-based data modeling using PostgreSQL
+- Designed following Bronze / Silver / Gold principles
+- Focus on data quality, maintainability and readability
+- Portfolio-oriented project intended to demonstrate real-world data workflows
+
 ```
 
 ---
@@ -373,6 +371,7 @@ I'm excited to bring these skills to your next project.
 | Configuration | [3-Multitenant-Config](./3-Multitenant-Config/) | ✅ Production |
 | Analytics | [4-Analytics-Evolutivos](./4-Analytics-Evolutivos/) | ✅ Production |
 | PowerBI | [5-PowerBI-Dashboards](./5-PowerBI-Dashboards/) | ✅ Production |
+
 
 
 
